@@ -252,7 +252,7 @@ with tab5:
         st.write('Bandwidth in [Hz] is ', n17, 'Hz')
         st.write('Numerical SNR is ', output)
         st.write('SNR in [dB] is', 10*np.log10(s), 'dB')
-        st.latex(r'''\text{SNR}=2^{\frac{C_{bps}}{B_{Hz}}}-1''')    
+        st.latex(r'''\text{SNR}=2^{\frac{C_{bps}}{B_{Hz}}}-1.''')    
 
 with tab6:
   st.subheader('Power')
