@@ -256,11 +256,22 @@ with tab5:
 
 with tab6:
   st.subheader('Power')
-  st.caption('Type values')
   col11, col12, col13 = st.columns(3)
-  st.subheader('Data Rate')
-  st.caption('Type values')
-  col21, col22, col23 = st.columns(3)
-  st.subheader('Frequency')
-  st.caption('Type values')
-  col21, col22, col23 = st.columns(3)
+  with col11:
+    n20 = st.number_input('Power in Watts (W)', key='n20')
+    n21 = st.number_input('Power in mW (mW)', key='n21')
+  with col12:
+    st.write('Unit transformation:')
+    result14 = st.button(label="Compute power in mW")
+    result15 = st.button(label="Compute power in W")
+  with col13:
+    st.write('Results:')
+    if result14:
+      pmw = n20 * 1000
+      output = "{:.4f}".format(pmw)
+      st.write(n20, "W", " is equal to ", output, "mW")
+    if result15:
+      pw = n21 / 1000
+      output = "{:.6f}".format(pw)
+      st.write(n21, "mW", " is equal to ", output, "W")
+      
