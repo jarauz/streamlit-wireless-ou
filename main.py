@@ -275,3 +275,22 @@ with tab6:
       output = "{:.6f}".format(pw)
       st.write(n21, "mW", " is equal to ", output, "W")
       
+  st.subheader('Frequency')
+  col21, col22, col23 = st.columns(3)
+  with col21:
+    n22 = st.number_input('Frequency in [Hz] (f)', key='n22')
+    n23 = st.number_input('Frequency in [MHz] (f)', key='n23')
+  with col22:
+    st.write('Unit transformation:')
+    result16 = st.button(label="Compute frequency in [MHz]")
+    result17 = st.button(label="Compute frequency in [Hz]")
+  with col23:
+    st.write('Results:')
+    if result16:
+      fmhz= n22 / 1000000
+      output = "{:.4f}".format(fmhz)
+      st.write(n22, "Hz", " is equal to ", output, "MHz")
+    if result17:
+      fhz = n23 * 1000000
+      output = "{:.4f}".format(fhz)
+      st.write(n23, "MHz", " is equal to ", output, "Hz")
