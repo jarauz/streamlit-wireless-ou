@@ -23,7 +23,7 @@ st.caption("McClure School - [Information and Telecommunication Systems Program]
 st.text("Digital communications & wireless systems calculator")
 
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Power", "Path loss", "Free space propagation", "SNR", "Shannon", 'Units'])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Power", "Path loss", "Free space propagation", "SNR", "Shannon", 'Units', 'C/I'])
 
 with tab1:
   col1, col2 = st.columns(2)
@@ -294,3 +294,42 @@ with tab6:
       fhz = n23 * 1000000
       output = "{:.4f}".format(fhz)
       st.write(n23, "MHz", " is equal to ", output, "Hz")
+
+
+with tab7:
+  col71, col72 = st.columns(2)
+  with col71:
+    st.subheader('Reuse factor 1/K')
+    n24 = st.number_input('Carrier / Interference (dB)', key='n24')
+    n25 = st.number_input(r'Environmental exponent ${\alpha}$', key='n25')
+    result18 = st.button(label="Compute reuse factor 1/K")
+    if result18:
+      if (n25 > 0):
+        ciNum = np.power(10,n24/10)
+        output = (np.power(6*ciNum,(2/n25)))/3
+        st.write('C/I in [dB] is ', n24, 'dB')
+        st.write(r"${\alpha}$ is ", n25)
+        st.write('C/I numerical is ', format(ciNum, ".4f"))
+        st.write('K value is ', format(output, ".4f"))
+        st.write('Then K to be used is ', np.ceil(output))
+        st.write('Reuse factor 1/K is ', '1/',np.ceil(output))
+        st.latex(r'''K=\frac{1}{3}{\left( \frac{6C}{I} \right)}^{\frac{2}{\alpha}}''')
+      else:
+        st.write(r"${\alpha}$ should be greater than zero")
+  with col72:
+    st.subheader('Carrier/Interference (C/I)')
+    n26 = st.number_input('K', key='n26')
+    n27 = st.number_input(r'Environmental exponent ${\alpha}$', key='n27')
+    result19 = st.button(label="Compute Carrier/Interference (C/I)")
+    if result19:
+      if (n27 > 0):
+        st.write('K value is ', n26)
+        st.write(r"${\alpha}$ is ", n27)
+        output = (np.power(3*n26, (n27/2)))/6
+        st.write('C/I numerical is ', format(output, ".4f"))
+        st.write('C/I in [dB] is ', format(10*np.log10(output), ".4f"))
+        st.latex(r'''\frac{C}{I}=\frac{1}{6}{(3K)}^{\frac{\alpha}{2}}''')
+      else:
+        st.write(r"${\alpha}$ should be greater than zero")
+    
+    
