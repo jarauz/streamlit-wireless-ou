@@ -302,6 +302,8 @@ with tab7:
     st.subheader('Reuse factor 1/K')
     n24 = st.number_input('Carrier / Interference (dB)', key='n24')
     n25 = st.number_input(r'Environmental exponent ${\alpha}$', key='n25')
+    st.write('C is the power of the carrier')
+    st.write('I is the total power of interferers')
     result18 = st.button(label="Compute reuse factor 1/K")
     if result18:
       if (n25 > 0):
@@ -320,6 +322,7 @@ with tab7:
     st.subheader('Carrier/Interference (C/I)')
     n26 = st.number_input('K', key='n26')
     n27 = st.number_input(r'Environmental exponent ${\alpha}$', key='n27')
+    st.write('K is the number of cells in a cluster')
     result19 = st.button(label="Compute Carrier/Interference (C/I)")
     if result19:
       if (n27 > 0):
